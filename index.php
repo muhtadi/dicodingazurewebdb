@@ -26,10 +26,10 @@
        <input type="submit" name="load_data" value="Load Data" />
  </form>
  <?php
-    $host = "<Nama server database Anda>";
-    $user = "<Nama admin database Anda>";
-    $pass = "<Password admin database Anda>";
-    $db = "<Nama database Anda>";
+    $host = "dicodingacademy.database.windows.net";
+    $user = "dicoding";
+    $pass = "UINdev2019";
+    $db = "Registration";
 
     try {
         $conn = new PDO("sqlsrv:server = $host; Database = $db", $user, $pass);
@@ -43,15 +43,15 @@
             $name = $_POST['name'];
             $email = $_POST['email'];
             $job = $_POST['job'];
-            $date = date("Y-m-d");
+            //$date = date("Y-m-d");
             // Insert data
-            $sql_insert = "INSERT INTO Registration (name, email, job, date) 
-                        VALUES (?,?,?,?)";
+            $sql_insert = "INSERT INTO Registration (name, email, job) 
+                        VALUES (?,?,?)";
             $stmt = $conn->prepare($sql_insert);
             $stmt->bindValue(1, $name);
             $stmt->bindValue(2, $email);
             $stmt->bindValue(3, $job);
-            $stmt->bindValue(4, $date);
+            //$stmt->bindValue(4, $date);
             $stmt->execute();
         } catch(Exception $e) {
             echo "Failed: " . $e;
@@ -69,13 +69,13 @@
                 echo "<tr><th>Name</th>";
                 echo "<th>Email</th>";
                 echo "<th>Job</th>";
-                echo "<th>Date</th></tr>";
-                foreach($registrants as $registrant) {
-                    echo "<tr><td>".$registrant['name']."</td>";
-                    echo "<td>".$registrant['email']."</td>";
-                    echo "<td>".$registrant['job']."</td>";
-                    echo "<td>".$registrant['date']."</td></tr>";
-                }
+                // echo "<th>Date</th></tr>";
+                // foreach($registrants as $registrant) {
+                //     echo "<tr><td>".$registrant['name']."</td>";
+                //     echo "<td>".$registrant['email']."</td>";
+                //     echo "<td>".$registrant['job']."</td>";
+                //     echo "<td>".$registrant['date']."</td></tr>";
+                // }
                 echo "</table>";
             } else {
                 echo "<h3>No one is currently registered.</h3>";
