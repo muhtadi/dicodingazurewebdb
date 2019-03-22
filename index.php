@@ -29,7 +29,7 @@
     $host = "dicodingacademy.database.windows.net";
     $user = "dicoding";
     $pass = "UINdev2019";
-    $db = "Registration";
+    $db = "dicodingwebapp";
 
     try {
         $conn = new PDO("sqlsrv:server = $host; Database = $db", $user, $pass);
@@ -69,13 +69,13 @@
                 echo "<tr><th>Name</th>";
                 echo "<th>Email</th>";
                 echo "<th>Job</th>";
-                // echo "<th>Date</th></tr>";
-                // foreach($registrants as $registrant) {
-                //     echo "<tr><td>".$registrant['name']."</td>";
-                //     echo "<td>".$registrant['email']."</td>";
-                //     echo "<td>".$registrant['job']."</td>";
-                //     echo "<td>".$registrant['date']."</td></tr>";
-                // }
+                //echo "<th>Date</th></tr>";
+                foreach($registrants as $registrant) {
+                    echo "<tr><td>".$registrant['name']."</td>";
+                    echo "<td>".$registrant['email']."</td>";
+                    echo "<td>".$registrant['job']."</td>";
+                    //echo "<td>".$registrant['date']."</td></tr>";
+                }
                 echo "</table>";
             } else {
                 echo "<h3>No one is currently registered.</h3>";
