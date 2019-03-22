@@ -43,15 +43,15 @@
             $name = $_POST['name'];
             $email = $_POST['email'];
             $job = $_POST['job'];
-            //$date = date("Y-m-d");
+            $date = date("Y-m-d");
             // Insert data
-            $sql_insert = "INSERT INTO Registration (name, email, job) 
-                        VALUES (?,?,?)";
+            $sql_insert = "INSERT INTO Registration (name, email, job, date) 
+                        VALUES (?,?,?,?)";
             $stmt = $conn->prepare($sql_insert);
             $stmt->bindValue(1, $name);
             $stmt->bindValue(2, $email);
             $stmt->bindValue(3, $job);
-            //$stmt->bindValue(4, $date);
+            $stmt->bindValue(4, $date);
             $stmt->execute();
         } catch(Exception $e) {
             echo "Failed: " . $e;
@@ -69,12 +69,12 @@
                 echo "<tr><th>Name</th>";
                 echo "<th>Email</th>";
                 echo "<th>Job</th>";
-                //echo "<th>Date</th></tr>";
+                echo "<th>Date</th></tr>";
                 foreach($registrants as $registrant) {
                     echo "<tr><td>".$registrant['name']."</td>";
                     echo "<td>".$registrant['email']."</td>";
                     echo "<td>".$registrant['job']."</td>";
-                    //echo "<td>".$registrant['date']."</td></tr>";
+                    echo "<td>".$registrant['date']."</td></tr>";
                 }
                 echo "</table>";
             } else {
